@@ -23,4 +23,8 @@ x86-64 Crypter built in Rust for Windows with Anti-VM, powered by memexec
 - GUI
 
 ## Disclaimer
-This is a tool used to test the Dynamic detection capabilites of AV and EDR, use of this project is at your own risk
+This is a tool used to test the Dynamic detection capabilites of AV and EDR, use of this project is at your own ris
+
+## References
+https://crates.io/crates/memexec
+https://crates.io/crates/inside-vm
