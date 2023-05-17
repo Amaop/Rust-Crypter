@@ -15,12 +15,12 @@ x86-64 Crypter built in Rust for Windows with Anti-VM, powered by memexec
 
 ### Limitations
 - .NET not supported
-- Files over 600MB
+- Files over 600MB not supported
 
 ## TODO
-File dialogue choose file instead of renaming code strings/executable names
-Automatically move encrypted bytes and key into stub for compiling
-GUI
+- File dialogue choose file instead of renaming code strings/executable names
+- Automatically move encrypted bytes and key into stub for compiling
+- GUI
 
 ## Disclaimer
 This is a tool used to test the Dynamic detection capabilites of AV and EDR, use of this project is at your own risk
