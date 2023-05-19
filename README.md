@@ -1,5 +1,5 @@
 # Rust Crypter
-x86-64 Crypter built in Rust for Windows with Anti-VM, powered by memexec
+x86-64 Malware Crypter built in Rust for Windows with Anti-VM, powered by memexec
 
 ## Usage
 1. Put your Portable Executable in /crypt/ and rename it to example.exe (or change the code to be the same name as your PE)
