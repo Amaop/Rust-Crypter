@@ -21,6 +21,7 @@ x86-64 Malware Crypter built in Rust for Windows with Anti-VM, powered by memexe
 - File dialogue choose file instead of renaming code strings/executable names
 - Automatically move encrypted bytes and key into stub for compiling
 - GUI
+- Obfuscated Strings
 
 ## Disclaimer
 This is a tool used to test the Dynamic detection capabilites of AV and EDR, use of this project is at your own risk
