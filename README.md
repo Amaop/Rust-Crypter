@@ -6,7 +6,7 @@ x86-64 Malware Crypter built in Rust for Windows with Anti-VM, powered by memexe
 2. In /crypt/ `cargo run` 
 (will output encrypted_bytes.bin and key.txt)
 3. move encrypted_bytes.bin and key.txt to /stub/src/
-4. In /stub/ `cargo build`
+4. In /stub/ `cargo build --release` or build without `--release` to keep debug symbols
 5. compiled exe will be in /stub/target/debug/ named "stub.exe"
 
 ### Supported targets
