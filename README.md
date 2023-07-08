@@ -26,6 +26,13 @@ x86-64 Malware Crypter built in Rust for Windows with Anti-VM, powered by memexe
 ## Disclaimer
 This is a tool used to test the Dynamic detection capabilites of AV and EDR, use of this project is at your own risk
 
+## MITRE TTPs (Indicators)
+User Execution: Malicious File T1204.002
+Deobfuscate/Decode Files or Information T1140
+Embedded Payloads T1027.009
+System Checks T1497.001
+Reflective Code Loading T1620
+
 ## References
 https://crates.io/crates/memexec
 https://crates.io/crates/inside-vm
