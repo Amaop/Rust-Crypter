@@ -24,7 +24,7 @@ x86-64 Malware Crypter built in Rust for Windows with Anti-VM, powered by memexe
 - Obfuscated Strings
 
 ## Disclaimer
-This is a tool used to test the Dynamic detection capabilites of AV and EDR, use of this project is at your own risk
+This is a tool used to test the Static + Dynamic detection capabilites of AV and EDR, use of this project is at your own risk
 
 ## MITRE TTPs (Indicators)
 - User Execution: Malicious File T1204.002
