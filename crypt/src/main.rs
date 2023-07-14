@@ -11,7 +11,7 @@ use rand::{RngCore, SeedableRng};
 
 fn main() -> std::io::Result<()> {
     // Read input file into a vector RENAME example.exe to what you want and put it in this "crypt" folder
-    let plaintext_bytes = read("example.exe").expect("Failed to read file");
+    let plaintext_bytes = read("hexowl.exe").expect("Failed to read file");
 
     let mut encrypted_file = File::create("encrypted_Input.bin")?;
     let mut key_file = File::create("key.txt")?;

