@@ -32,6 +32,7 @@ This is a tool used to test the Dynamic detection capabilites of AV and EDR, use
 - Embedded Payloads T1027.009
 - System Checks T1497.001
 - Reflective Code Loading T1620
+- Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder T1547.001
 
 ## References
 https://crates.io/crates/memexec
