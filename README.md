@@ -2,8 +2,8 @@
 x86-64 Malware Crypter built in Rust for Windows with Anti-VM, powered by memexec
 
 ## Usage
-1. Put your Portable Executable in /crypt/ and rename it to example.exe (or change the code to be the same name as your PE)
-2. In /crypt/ `cargo run` 
+1. Put your Portable Executable in /crypt/ 
+2. In /crypt/ `cargo run <name_of_pe.exe>` 
 (will output encrypted_bytes.bin and key.txt)
 3. move encrypted_bytes.bin and key.txt to /stub/src/
 4. In /stub/ `cargo build --target x86_64-pc-windows-gnu --release` or build without `--release` to keep debug symbols
