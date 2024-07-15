@@ -1,17 +1,23 @@
+use aes::cipher::{generic_array::GenericArray, BlockEncrypt, KeyInit};
 use aes::Aes128;
-use aes::cipher::{
-    BlockEncrypt, KeyInit,
-    generic_array::GenericArray,
-};
+use rand::rngs::StdRng;
+use rand::{RngCore, SeedableRng};
 use std::fs::read;
 use std::fs::File;
 use std::io::prelude::*;
-use rand::rngs::StdRng;
-use rand::{RngCore, SeedableRng};
 
 fn main() -> std::io::Result<()> {
     // Read input file into a vector RENAME example.exe to what you want and put it in this "crypt" folder
-    let plaintext_bytes = read("hexowl.exe").expect("Failed to read file");
+    let args: Vec<String> = std::env::args().collect();
+    if args.len() < 2 {
+        println!("Run with {} <inputfile.exe>", args.get(0).unwrap());
+        return Err(std::io::Error::new(
+            std::io::ErrorKind::NotFound,
+            "file input not found",
+        ));
+    }
+    let fname = args.get(1).unwrap();
+    let plaintext_bytes = read(fname).expect("Failed to read file");
 
     let mut encrypted_file = File::create("encrypted_Input.bin")?;
     let mut key_file = File::create("key.txt")?;
