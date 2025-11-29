@@ -19,6 +19,7 @@ fn main() -> std::io::Result<()> {
     let fname = args.get(1).unwrap();
     let plaintext_bytes = read(fname).expect("Failed to read file");
 
+    // Create output files with consistent naming
     let mut encrypted_file = File::create("encrypted_Input.bin")?;
     let mut key_file = File::create("key.txt")?;
 
